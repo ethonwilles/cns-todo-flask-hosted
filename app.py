@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template
+from flask_heroku import Heroku
 
 app = Flask(__name__)
+Heroku(app)
 
 @app.route("/", methods=["GET"])
 def render():
