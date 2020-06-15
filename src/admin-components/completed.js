@@ -14,8 +14,10 @@ const Completed = () => {
       .then((res) => res.json())
       .then((data) => setComplete(data.items));
 
-    for (var i = moment().date(); i <= moment().date() + 7; i++) {
-      dates.push(i);
+    for (var i = moment().date(); i >= moment().date() - 14; i--) {
+      if (i >= 1) {
+        dates.push(i);
+      }
     }
   }, []);
   const renderItems = () => {
@@ -53,6 +55,11 @@ const Completed = () => {
       >
         {renderOptions()}
       </select>
+      <input
+        placeholder="Enter Date to Search ex. '6/14'"
+        onChange={(e) => setDate(e.target.value)}
+        style={{ width: "180px" }}
+      />
       {renderItems()}
     </div>
   );
