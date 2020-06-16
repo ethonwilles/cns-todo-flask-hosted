@@ -52,7 +52,7 @@ const Todo = (props) => {
   return (
     <div className="todo">
       <form
-        action="http://localhost:5000/upload"
+        action="https://cjw-todo-site.herokuapp.com/upload"
         method="POST"
         enctype="multipart/form-data"
       >
