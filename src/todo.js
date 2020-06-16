@@ -28,7 +28,6 @@ const Todo = (props) => {
     setDelete(true);
   };
 
-  const uploadFile = () => {};
   const changeColor = () => {
     if (check) {
       setStyle("red");
@@ -36,27 +35,32 @@ const Todo = (props) => {
     } else {
       setStyle("green");
       setCheck(true);
-      fetch("https://cns-automate-backend.herokuapp.com/todo-check", {
-        method: "PUT",
-        cors: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          task: props.content,
-          completed: true,
-          date: props.date,
-        }),
-      });
+      //   fetch("https://cns-automate-backend.herokuapp.com/todo-check", {
+      //     method: "PUT",
+      //     cors: "cors",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({
+      //       task: props.content,
+      //       completed: true,
+      //       date: props.date,
+      //     }),
+      //   });
     }
   };
   return (
     <div className="todo">
-      <form onSubmit={uploadFile}>
+      <form
+        action="http://localhost:5000/upload"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         <div className="todo-content">
           <p>{props.content}</p>
           <i onClick={deleteItem} class="far fa-trash-alt"></i>
         </div>
+        <input type="file" name="file" />
         <div className="check" style={{ backgroundColor: style }}>
           <button
             style={{ backgroundColor: style }}
