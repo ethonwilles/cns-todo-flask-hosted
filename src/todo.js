@@ -28,6 +28,21 @@ const Todo = (props) => {
     setDelete(true);
   };
 
+  const submitForm = () => {
+    fetch("https://cns-automate-backend.herokuapp.com/todo-check", {
+      method: "PUT",
+      cors: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        task: props.content,
+        completed: true,
+        date: props.date,
+      }),
+    });
+  };
+
   const changeColor = () => {
     if (check) {
       setStyle("red");
@@ -35,18 +50,6 @@ const Todo = (props) => {
     } else {
       setStyle("green");
       setCheck(true);
-      fetch("https://cns-automate-backend.herokuapp.com/todo-check", {
-        method: "PUT",
-        cors: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          task: props.content,
-          completed: true,
-          date: props.date,
-        }),
-      });
     }
   };
   return (
@@ -55,6 +58,7 @@ const Todo = (props) => {
         action="https://cjw-todo-site.herokuapp.com/upload"
         method="POST"
         enctype="multipart/form-data"
+        onSubmit={submitForm}
       >
         <div className="todo-content">
           <p>{props.content}</p>
