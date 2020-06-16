@@ -10,6 +10,7 @@ flask = "*"
 flask-cors = "*"
 flask-heroku = "*"
 gunicorn = "*"
+twilio = "*"
 
 [requires]
 python_version = "3.7"

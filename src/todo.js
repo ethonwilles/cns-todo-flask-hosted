@@ -28,6 +28,7 @@ const Todo = (props) => {
     setDelete(true);
   };
 
+  const uploadFile = () => {};
   const changeColor = () => {
     if (check) {
       setStyle("red");
@@ -51,21 +52,27 @@ const Todo = (props) => {
   };
   return (
     <div className="todo">
-      <div className="todo-content">
-        <p>{props.content}</p>
-        <i onClick={deleteItem} class="far fa-trash-alt"></i>
-      </div>
-      <div className="check" style={{ backgroundColor: style }}>
-        <button style={{ backgroundColor: style }} onClick={changeColor}>
-          {check ? (
-            <p>Done</p>
-          ) : Delete ? (
-            <p>Marked For Deletion</p>
-          ) : (
-            <p>Not Done</p>
-          )}
-        </button>
-      </div>
+      <form onSubmit={uploadFile}>
+        <div className="todo-content">
+          <p>{props.content}</p>
+          <i onClick={deleteItem} class="far fa-trash-alt"></i>
+        </div>
+        <div className="check" style={{ backgroundColor: style }}>
+          <button
+            style={{ backgroundColor: style }}
+            onClick={changeColor}
+            type="submit"
+          >
+            {check ? (
+              <p>Done</p>
+            ) : Delete ? (
+              <p>Marked For Deletion</p>
+            ) : (
+              <p>Not Done</p>
+            )}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
