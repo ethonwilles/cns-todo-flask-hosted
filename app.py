@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 from flask_heroku import Heroku
 from twilio.rest import Client
 from dotenv import load_dotenv
@@ -28,7 +28,7 @@ def upload():
         media_url=[f'{app.config["SITE_URL_STATIC"]}/{file.filename}'],
         body=f"Task  was marked as completed today."
     )
-    return f"worked, message sid: "
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)
