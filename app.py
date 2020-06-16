@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, redirect
+from flask_cors import CORS
 from flask_heroku import Heroku
 from twilio.rest import Client
 from dotenv import load_dotenv
@@ -7,6 +8,7 @@ import os
 
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
 Heroku(app)
 app.config["IMAGES_PATH"] = os.path.abspath(os.path.dirname(__file__))
 app.config["SITE_URL_STATIC"] = "https://cjw-todo-site.herokuapp.com/static"
@@ -15,7 +17,9 @@ app.config["SITE_URL_STATIC"] = "https://cjw-todo-site.herokuapp.com/static"
 def render():
     return render_template("index.html")
 
-
+@app.route("/content", methods=["GET"])
+def content():
+    return redirect("/")
 @app.route("/upload", methods=["POST"])
 def upload():
     try:
