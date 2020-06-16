@@ -45,6 +45,9 @@
     align-items: center;
     border: 1.5px solid black;
     margin: 20px 0px;
+    form {
+      width: 100%;
+    }
     .todo-content {
       display: flex;
       align-items: center;
