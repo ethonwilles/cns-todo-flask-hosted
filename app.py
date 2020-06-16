@@ -25,8 +25,8 @@ def upload():
     message = client.messages.create(
         to="+18016912737",
         from_=f"{os.getenv('number')}",
-        media_url=[f'{app.config["SITE_URL_STATIC"]}/{file.filename}'],
-        body=f"Task  was marked as completed today."
+        media_url=[f'{app.config["SITE_URL_STATIC"]}/{file.filename}']
+        
     )
     return redirect("/")
 
