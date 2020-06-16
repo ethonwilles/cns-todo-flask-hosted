@@ -18,17 +18,26 @@ def render():
 
 @app.route("/upload", methods=["POST"])
 def upload():
-    file = request.files['file']
-    
-    file.save(f'{app.config["IMAGES_PATH"]}/static/{file.filename}')
-    client = Client(os.getenv("account_sid"), os.getenv("twilio_auth"))
-    message = client.messages.create(
-        to="+18016912737",
-        from_=f"{os.getenv('number')}",
-        media_url=[f'{app.config["SITE_URL_STATIC"]}/{file.filename}']
+    try:
+        file = request.files['file']
         
-    )
-    return redirect("/")
+        file.save(f'{app.config["IMAGES_PATH"]}/static/{file.filename}')
+        client = Client(os.getenv("account_sid"), os.getenv("twilio_auth"))
+        message = client.messages.create(
+            to="+18016912737",
+            from_=f"{os.getenv('number')}",
+            media_url=[f'{app.config["SITE_URL_STATIC"]}/{file.filename}']
+            
+        )
+        return redirect("/")
+    except:
+        client = Client(os.getenv("account_sid"), os.getenv("twilio_auth"))
+        message = client.messages.create(
+            to="+18016912737",
+            from_=f"{os.getenv('number')}",
+            body="No Image was Uploaded with this task."
+            
+        )
 
 if __name__ == "__main__":
     app.run(debug=True)
