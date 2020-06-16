@@ -38,6 +38,6 @@ def upload():
             body="No Image was Uploaded with this task."
             
         )
-
+        return redirect("/")
 if __name__ == "__main__":
     app.run(debug=True)
