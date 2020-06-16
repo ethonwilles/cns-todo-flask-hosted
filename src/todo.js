@@ -36,9 +36,6 @@ const Todo = (props) => {
     fetch("https://cjw-todo-site.herokuapp.com/upload", {
       method: "POST",
       cors: "cors",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
       body: data,
     })
       .then((res) => res.json())
